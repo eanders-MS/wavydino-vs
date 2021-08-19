@@ -1,0 +1,27 @@
+{
+    "name": "wavydino-vs",
+    "description": "",
+    "dependencies": {
+        "device": "*",
+        "affine": "github:eanders-ms/affine#a98e6347b8205579cf5b62bf2a702e86f2c35bfb"
+    },
+    "files": [
+        "main.blocks",
+        "main.ts",
+        "README.md",
+        "assets.json",
+        "images.g.jres",
+        "images.g.ts"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "targetVersions": {
+        "target": "1.5.46",
+        "targetId": "arcade"
+    },
+    "supportedTargets": [
+        "arcade"
+    ],
+    "preferredEditor": "tsprj"
+}
