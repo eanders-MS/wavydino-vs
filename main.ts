@@ -5,18 +5,16 @@ class WavyVertexShader extends affine.Gpu.VertexShader {
         super(src);
         this.dim = Fx8(dim);
     }
-    public transform(frameId: number, xfrm: affine.Transform): void {
-        if (this.frameId === frameId) { return; }
-        this.frameId = frameId;
-        this.src.forEach((v, i) => {
-            xfrm.transformToRef(v.pos, this.verts[i].pos);
-            const t = Fx8(this.frameId);
-            const angle = Fx.toFloat(Fx.add(t, Fx.mul(this.dim, v.uv.u)));
-            const s = Fx8(Math.sin(angle));
-            //const s = affine.trig.sin(angle);
-            const offset = Fx.mul(xfrm.localScl.x, s);
-            this.verts[i].pos.y = Fx.add(this.verts[i].pos.y, offset);
-        });
+    public transform(index: number, xfrm: affine.Transform): void {
+        const src = this.src[index];
+        const dst = this.verts[index];
+        xfrm.transformToRef(src.pos, dst.pos);
+        const t = Fx8(this.frameId);
+        const angle = Fx.toFloat(Fx.add(t, Fx.mul(this.dim, src.uv.u)));
+        const s = Fx8(Math.sin(angle));
+        //const s = affine.trig.sin(angle);
+        const offset = Fx.mul(xfrm.localScl.x, s);
+        dst.pos.y = Fx.add(dst.pos.y, offset);
     }
 
 }
