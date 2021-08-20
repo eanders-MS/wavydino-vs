@@ -15,7 +15,6 @@ class WavyVertexShader extends affine.Gpu.VertexShader {
         const offset = Fx.mul(xfrm.localScl.x, s);
         dst.pos.y = Fx.add(dst.pos.y, offset);
     }
-
 }
 
 class Scene extends affine.Scene {
@@ -48,11 +47,7 @@ class Scene extends affine.Scene {
         controller.B.onEvent(ControllerButtonEvent.Pressed, () => this.scaleDown());
     }
 
-    /*override*/update(dt: number) {
-        this.sprite.xfrm.localScl.x = this.sprite.xfrm.localScl.y = Fx8(this.scale);
-    }
-
-    /*override*/draw() {
+    draw() {
         this.sprite.draw();
     }
 
@@ -76,11 +71,13 @@ class Scene extends affine.Scene {
 
     scaleUp() {
         this.scale *= 1.5;
+        this.sprite.xfrm.localScl = new affine.Vec2(Fx8(this.scale), Fx8(this.scale));
     }
 
     scaleDown() {
         this.scale /= 1.5;
         if (this.scale < 0.1) this.scale = 0.1;
+        this.sprite.xfrm.localScl = new affine.Vec2(Fx8(this.scale), Fx8(this.scale));
     }
 }
 
