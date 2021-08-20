@@ -3,7 +3,7 @@
     "description": "",
     "dependencies": {
         "device": "*",
-        "affine": "github:eanders-ms/affine#f4485240b755e80bf116a456312fbb06e57f3d7e"
+        "affine": "github:eanders-ms/affine#47f1d9e925dec7d1e09ca9a8920750c9c06cc082"
     },
     "files": [
         "main.blocks",

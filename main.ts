@@ -10,9 +10,8 @@ class WavyVertexShader extends affine.Gpu.VertexShader {
         const dst = this.verts[index];
         xfrm.transformToRef(src.pos, dst.pos);
         const t = Fx8(this.frameId);
-        const angle = Fx.toFloat(Fx.add(t, Fx.mul(this.dim, src.uv.u)));
-        const s = Fx8(Math.sin(angle));
-        //const s = affine.trig.sin(angle);
+        const angle = Fx.toFloat(Fx.add(t, Fx.mul(this.dim, src.uv.u))) * 180 / Math.PI;
+        const s = affine.trig.sin(angle);
         const offset = Fx.mul(xfrm.localScl.x, s);
         dst.pos.y = Fx.add(dst.pos.y, offset);
     }
@@ -32,6 +31,7 @@ class Scene extends affine.Scene {
         this.sprite = new affine.MeshSprite(this, dim, dim, size / dim, size / dim,
             (src: affine.Vertex[]) => new WavyVertexShader(src, dim),
             () => new affine.Gpu.TexturedPixelShader(img));
+        this.sprite.debug = true;
     }
 
     /*override*/startup() {
