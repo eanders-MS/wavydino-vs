@@ -30,10 +30,10 @@ class Scene extends affine.Scene {
         this.sprite = new affine.MeshSprite(this, dim, dim, size / dim, size / dim,
             (src: affine.Vertex[]) => new WavyVertexShader(src, dim),
             () => new affine.Gpu.TexturedPixelShader(img));
-        this.sprite.debug = true;
+        //this.sprite.debug = true;
     }
 
-    /*override*/startup() {
+    startup() {
         controller.setRepeatDefault(0, 1);
         controller.up.onEvent(ControllerButtonEvent.Pressed, () => this.moveUp());
         controller.up.onEvent(ControllerButtonEvent.Repeated, () => this.moveUp());
